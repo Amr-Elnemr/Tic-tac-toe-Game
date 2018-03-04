@@ -2,7 +2,11 @@ package database;
 
 public class test {
     public static void main(String[] args) {
-        Database db=new Database();
+        Database db=new Database();  //A constructor --Must Run
+        
+        System.out.println(db.searchNames("mizO6"));
+        
+        
 //        db.addPlayer("Mina");
         
 //        System.out.println(db.getPlayerID("Mina"));
@@ -16,7 +20,7 @@ public class test {
 
 //        System.out.println(db.recallResult(7));  
 
-          System.out.println(db.recallMoves(7)[0][0]); 
+//          System.out.println(db.recallMoves(3)); 
         
     }
 }

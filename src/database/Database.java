@@ -20,6 +20,20 @@ public class Database{
             ex.printStackTrace();
         }
     }
+////////////////////// { Check for playerName Existance }/////////////////////////////////
+///*** [This fucntion will return true if the player exists, else will return false] ***///
+    public Boolean searchNames(String playerName){
+        try {
+            PreparedStatement pst=con.prepareStatement("SELECT * FROM Players WHERE P1_Name= ?");
+            pst.setString(1, playerName);
+            ResultSet rs = pst.executeQuery();
+            return rs.next();
+        } 
+        catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return true;
+    }
 //////////////////////////// { Add new player }/////////////////////////////////
     public void addPlayer(String playerName){
         try {
@@ -83,7 +97,7 @@ public class Database{
         } 
     }
 
-//////////////////////////// { List user saved Games(IDs) } ////////////////////     
+//////////////////////////// { List user saved Games(IDs) using Player Name } ////////////////////     
     public List<Integer> listMyGames(String playerName){
             int id=getPlayerID(playerName);
             List<Integer> myGames = new ArrayList<>();
@@ -147,7 +161,7 @@ public class Database{
                 ResultSet rs = pst.executeQuery();
                 rs.next(); //to put the cursor on the first square
     //////get moves in an array:
-                for(int i=2; i<11; i++){
+                for(int i=2; i<11; i++){   //i start from 2 as the first element is gameid
                     moves[i-2]=rs.getInt(i);
                 }
     //////convert array to multidimentional:
